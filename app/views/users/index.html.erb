@@ -1,0 +1,20 @@
+<h1>Random Title</h1>
+
+<% if current_user %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <p>You're not signed in.</p>
+  <%= link_to "Sign up!", new_user_registration_path %>
+  <br>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
+
+<br>
+
+<% @users.each do |u| %>
+  <%= u.email %>
+  <%= u.role %>
+  <br>
+  <br>
+  <%= link_to "Your Profile", user_path(u.id) %>
+<% end %>
