@@ -11,6 +11,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    @record = @user
+    @record == @user
   end
 end

@@ -1,4 +1,4 @@
-<h1>Random Title</h1>
+<h1>Users</h1>
 
 <% if current_user %>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
@@ -14,7 +14,7 @@
 <% @users.each do |u| %>
   <%= u.email %>
   <%= u.role %>
+  <%= link_to "Your Profile", user_path(u.id), class: "btn btn-primary" %>
   <br>
   <br>
-  <%= link_to "Your Profile", user_path(u.id) %>
 <% end %>
