@@ -1,0 +1,20 @@
+<h1>Users</h1>
+
+<% if current_user %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+<% else %>
+  <p>You're not signed in.</p>
+  <%= link_to "Sign up!", new_user_registration_path, class: "btn btn-secondary" %>
+  <br>
+  <%= link_to "Login", new_user_session_path, class: "btn btn-secondary" %>
+<% end %>
+
+<br>
+
+<% @users.each do |u| %>
+  <%= u.email %>
+  <%= u.role %>
+  <%= link_to "Your Profile", user_path(u.id), class: "btn btn-primary" %>
+  <br>
+  <br>
+<% end %>
