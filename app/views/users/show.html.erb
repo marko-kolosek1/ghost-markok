@@ -1,8 +1,12 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<h1><%= @user.first_name %> <%= @user.last_name %>  <%= @user.decorate.avatar %> </h1>
 
 <p>This users email is <%= @user.email %></p>
 
 <%= form_with model: @user, class: "w-50" do |f| %>
+  <div class="form-group">
+    <%= f.label "Edit avatar" %>
+    <%= f.file_field :avatar %>
+  </div>
   <div class="form-group">
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
@@ -28,7 +32,7 @@
   <div class="form-group">
     <%= f.label :slug %>
     <%= f.text_field :slug %>
-  </div>  
+  </div>
   <%= f.submit "Save" %>
 <% end %>
 
