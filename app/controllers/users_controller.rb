@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
+    @user.save
     respond_to do |format|
       format.html { redirect_to user_path(@user.id), notice: 'User was successfully updated!' }
     end
