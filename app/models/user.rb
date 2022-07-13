@@ -1,6 +1,10 @@
 class User < ApplicationRecord
 
-  before_create :make_slug
+  before_create :initialize_default_name
+
+  before_create :set_default_role
+
+  after_create :make_slug
 
   after_update :make_slug
 
@@ -8,7 +12,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   enum role: {
@@ -17,13 +21,24 @@ class User < ApplicationRecord
     editor: 2
   }
 
-  after_initialize :set_default_role, :if => :new_record?
-
-  def set_default_role
-    self.role ||= :author
+  def invitation_accepted?
+    if self.invitation_accepted_at != nil
+      "accepted"
+    else
+      "pending"
+    end
   end
 
   private
+
+  def set_default_role
+    self.role = "author"
+  end
+
+  def initialize_default_name
+    self.first_name = "Name"
+    self.last_name = "Surname"
+  end
 
   def make_slug
     self.slug = self.first_name.downcase.gsub(/[^a-z1-9]+/, '-') + self.last_name.chr
