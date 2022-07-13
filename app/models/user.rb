@@ -20,7 +20,7 @@ class User < ApplicationRecord
   }
 
   def invitation_accepted?
-    if self.invitation_accepted_at && self.invitation_accepted_at != nil
+    if self.invitation_accepted_at != nil
       "accepted"
     else
       "pending"
