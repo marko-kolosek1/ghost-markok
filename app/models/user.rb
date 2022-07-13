@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  paginates_per 20
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
