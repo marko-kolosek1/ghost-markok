@@ -39,7 +39,7 @@ class User < ApplicationRecord
   end
 
   def make_slug
-    self.first_name.downcase.gsub(/[^a-z1-9]+/, '-') + self.last_name.chr
+    self.slug = self.first_name.downcase.gsub(/[^a-z1-9]+/, '-') + self.last_name.chr
   end
 
 end
