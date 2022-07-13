@@ -60,5 +60,6 @@ gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'pundit'
 gem 'carrierwave', '~> 2.0'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'draper'
+gem 'kaminari'

@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, except: [:index]
   before_action :authenticate_user!
+  before_action :set_last_seen_at, if: :user_signed_in?
+
 
   def index
-    @users = User.all
+    @users = User.all.page params[:page]
   end
 
   def show
@@ -27,4 +29,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :bio, :role, :slug, :avatar)
   end 
+
+  def set_last_seen_at
+    current_user.update_attribute(:last_seen_at, Time.current)
+  end
 end

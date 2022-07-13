@@ -1,4 +1,8 @@
-<h1>Users</h1>
+<h1>Team</h1>
+
+<% if current_user.role == "admin" %>
+  <%= link_to "Invite User", new_user_invitation_path, class: "btn btn-primary" %>
+<% end %>
 
 <% if current_user %>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
@@ -12,15 +16,15 @@
 <br>
 
 <% @users.each do |u| %>
+  <%= "#{u.first_name} #{u.last_name}" %>
+  <%= u.decorate.avatar %>  
   <%= u.email %>
   <%= u.role %>
-  <%= u.decorate.avatar %>
   <%= u.invitation_accepted? %>
   <%= link_to "Your Profile", user_path(u.id), class: "btn btn-primary" %>
+  <%= u.last_seen_at %>
   <br>
   <br>
 <% end %>
 
-<% if current_user.role == "admin" %>
-  <%= link_to "Invite User", new_user_invitation_path, class: "btn btn-primary" %>
-<% end %>
+<%= paginate @users %>
