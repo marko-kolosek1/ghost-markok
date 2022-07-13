@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   after_create :make_slug
 
+  after_update :make_slug
+
   mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:
