@@ -15,7 +15,12 @@
   <%= u.email %>
   <%= u.role %>
   <%= u.decorate.avatar %>
+  <%= u.invitation_accepted? %>
   <%= link_to "Your Profile", user_path(u.id), class: "btn btn-primary" %>
   <br>
   <br>
+<% end %>
+
+<% if current_user.role == "admin" %>
+  <%= link_to "Invite User", new_user_invitation_path, class: "btn btn-primary" %>
 <% end %>
