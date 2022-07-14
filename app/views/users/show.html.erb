@@ -2,6 +2,8 @@
 
 <p>This users email is <%= @user.email %></p>
 
+<p><%= link_to "Stories", user_stories_path(user_id: @user.id), class: "btn btn-primary" %></p>
+
 <%= form_with model: @user, class: "w-50" do |f| %>
   <div class="form-group">
     <%= f.label "Edit avatar" %>

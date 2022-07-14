@@ -1,0 +1,15 @@
+<h1>Stories</h1>
+
+<%= link_to "Create story", new_user_story_path, class: "btn btn-primary" %>
+<br>
+<br>
+<h2>List of Stories</h2>
+
+<% @stories.each do |s| %>
+  <%= s.title %>
+  <%= s.content %>
+  <%= link_to "Show", user_story_path(id: s.id), class: "btn btn-primary" %>
+  <%= link_to "Back to User", user_path(id: s.user_id), class: "btn btn-secondary" %>
+  <br>
+  <br>
+<% end %>

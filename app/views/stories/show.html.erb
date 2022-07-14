@@ -1,0 +1,11 @@
+<h1><%= @story.title %></h1>
+
+<p><%= @story.content %></p>
+
+<h4><%= @story.last_edited %></h4>
+
+<%= link_to "Edit story", edit_user_story_path(@story), class: "btn btn-primary" %>
+
+<%= link_to "Delete story", user_story_path(@story), method: :delete, class: "btn btn-danger" %>
+
+<%= link_to "Back to Stories", user_stories_path, class: "btn btn-secondary" %>
