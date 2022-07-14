@@ -23,6 +23,7 @@
   <%= u.invitation_accepted? %>
   <%= link_to "Your Profile", user_path(u.id), class: "btn btn-primary" %>
   <%= u.last_seen_at %>
+  <%= link_to "Stories", user_stories_path(u.id), class: "btn btn-primary" %>
   <br>
   <br>
 <% end %>

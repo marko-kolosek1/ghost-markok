@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  has_many :stories
+
   before_create :initialize_default_name
 
   before_create :set_default_role
