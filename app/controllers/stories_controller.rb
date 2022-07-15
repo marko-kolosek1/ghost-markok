@@ -4,9 +4,9 @@ class StoriesController < ApplicationController
   
   def index
     if current_user.role == "admin" || current_user.role == "editor"
-      @stories = Story.all
+      @stories = Story.all.search(params[:search])
     elsif current_user.role == "author"
-      @stories = Story.author_stories(current_user)      
+      @stories = Story.author_stories(current_user).search(params[:search]) 
     end
   end
 

@@ -5,6 +5,12 @@
 <br>
 <h2>List of Stories</h2>
 
+<h4>Search Tasks</h4>
+  <%= form_tag(user_stories_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag ("Search") %>
+<% end %>
+
 <% @stories.each do |s| %>
   <%= s.title %>
   <%= s.content %>
