@@ -4,6 +4,32 @@
 
 <p><%= link_to "Stories", user_stories_path(user_id: @user.id), class: "btn btn-primary" %></p>
 
+<!-- Button trigger modal -->
+<p><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<%@user.id%>">
+  Remove user
+</button></p>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal<% @user.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to remove <%= "#{@user.first_name} #{@user.last_name}" %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <%= link_to "Yes", user_path(@user), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <%= form_with model: @user, class: "w-50" do |f| %>
   <div class="form-group">
     <%= f.label "Edit avatar" %>
@@ -40,6 +66,6 @@
 
 <p><%= link_to "Change password", edit_user_registration_path(@user.id), class: "btn btn-primary" %></p>
 
-<% if current_user.id == @user.id %>
+<% if current_user.admin? %>
   <p><%= link_to "Back to users", users_path, class: "btn btn-secondary" %></p>
 <% end %>

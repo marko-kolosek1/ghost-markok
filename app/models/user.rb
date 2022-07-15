@@ -2,6 +2,8 @@ class User < ApplicationRecord
 
   has_many :stories
 
+  acts_as_paranoid without_default_scope: true
+
   before_create :initialize_default_name
 
   before_create :set_default_role
@@ -24,6 +26,10 @@ class User < ApplicationRecord
     author: 1,
     editor: 2
   }
+
+  def admin?
+    role == "admin"
+  end
 
   def invitation_accepted?
     if self.invitation_accepted_at != nil
