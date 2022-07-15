@@ -6,11 +6,12 @@ class UserPolicy < ApplicationPolicy
     # end
   end
 
-  def index?
-    @record != @user
+  def show?
+    @record == @user || @user.admin?
   end
 
-  def show?
-    @record == @user
+  def destroy?
+    @user.admin?
   end
+
 end
