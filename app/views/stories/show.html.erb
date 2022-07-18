@@ -6,6 +6,11 @@
 
 <p><%= @story.user.first_name %></p>
 
+<p>
+  Tags:
+  <%= @story.tag_list %>
+</p>
+
 <%= link_to "Edit story", edit_user_story_path(@story), class: "btn btn-primary" %>
 
 <%= link_to "Delete story", user_story_path(@story), method: :delete, class: "btn btn-danger" %>
