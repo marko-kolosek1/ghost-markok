@@ -1,0 +1,12 @@
+<h1>General settings</h1>
+
+<p><%= link_to "Back to users", users_path, class: "btn btn-secondary" %></p>
+
+<h4>Title and Description</h4>
+
+<%= link_to 'Expand', "#", class: "btn btn-primary toggle", data: {toggle: "collapse", target: "#demo"} %>
+<%= link_to 'Save settings', "#", class: "btn btn-secondary" %>
+
+<div id="demo" class="collapse">
+    <%= render 'form' %>
+</div>

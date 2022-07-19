@@ -2,6 +2,7 @@
 
 <% if current_user.role == "admin" %>
   <%= link_to "Invite User", new_user_invitation_path, class: "btn btn-primary" %>
+  <%= link_to "General settings", settings_path, class: "btn btn-primary" %>
 <% end %>
 
 <% if current_user %>
