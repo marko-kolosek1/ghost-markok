@@ -1,0 +1,10 @@
+<div class="demo" id="collapse"><%= form_with url: "/settings", method: :get do |form| %>
+  <%= form.label :title, "The name of your site: " %>
+  <%= form.text_field :title %>
+  <br>
+  <%= form.label "Used in your theme, metadata and search results: " %>
+  <%= form.text_field :description %>
+  <br>
+  <%= form.submit "Save" %>
+<% end %>
+</div>

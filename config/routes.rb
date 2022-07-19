@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :users do
     resources :stories
   end
+
+  resources :settings, only: [:index]
 end

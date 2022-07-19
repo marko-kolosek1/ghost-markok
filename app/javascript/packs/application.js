@@ -12,3 +12,16 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+global.$ = jQuery;
+
+
+
+$(document).ready(function(){
+  $("#demo").on("hide.bs.collapse", function(){
+    $(".toggle").html('Expand');
+  });
+  $("#demo").on("show.bs.collapse", function(){
+    $(".toggle").html('Close');
+  });
+});
