@@ -12,11 +12,29 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def edit
+    authorize @user
+  end
+
   def update
     @user.update(user_params)
     @user.save
     respond_to do |format|
       format.html { redirect_to user_path(@user.id), notice: 'User was successfully updated!' }
+    end
+  end
+
+  def update_password
+    if @user.update_with_password(password_params)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in(@user)
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Password successfully updated!' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to edit_user_path(@user.id), notice: 'Password not updated!' }
+      end
     end
   end
 
@@ -37,7 +55,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :bio, :role, :slug, :avatar)
-  end 
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
+  end  
 
   def set_last_seen_at
     current_user.update_attribute(:last_seen_at, Time.current)

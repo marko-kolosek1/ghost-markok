@@ -1,0 +1,19 @@
+<h1>Change Password</h1>
+
+<%= form_with(model: @user, url: update_password_user_path(@user)) do |f| %>
+  <div class="field">
+    <%= f.label "Old password: " %><br />
+    <%= f.password_field :current_password %>
+  </div>
+  <div class="field">
+    <%= f.label "New Password: " %><br />
+    <%= f.password_field :password, :autocomplete => "off" %>
+  </div>
+  <div class="field">
+    <%= f.label "Verify your password: " %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="action_container">
+    <%= f.submit %>
+  </div>
+<% end %>
