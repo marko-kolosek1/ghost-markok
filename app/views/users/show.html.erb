@@ -64,7 +64,7 @@
   <%= f.submit "Save" %>
 <% end %>
 
-<p><%= link_to "Change password", edit_user_registration_path(@user.id), class: "btn btn-primary" %></p>
+<p><%= link_to "Change password", edit_user_path(@user.id), class: "btn btn-primary" %></p>
 
 <% if current_user.admin? %>
   <p><%= link_to "Back to users", users_path, class: "btn btn-secondary" %></p>

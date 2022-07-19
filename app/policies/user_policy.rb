@@ -14,4 +14,8 @@ class UserPolicy < ApplicationPolicy
     @user.admin?
   end
 
+  def edit?
+    @record.id == @user.id
+  end
+
 end
