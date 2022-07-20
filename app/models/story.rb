@@ -3,6 +3,13 @@ class Story < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
+  paginates_per 10
+
+  validates :title, presence: true
+
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
+
   scope :author_stories, -> (user) { joins(:user).where("user_id = #{user.id}").order(created_at: :desc) }
 
   def self.search(input)

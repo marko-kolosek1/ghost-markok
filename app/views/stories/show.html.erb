@@ -11,8 +11,8 @@
   <%= @story.tag_list %>
 </p>
 
-<%= link_to "Edit story", edit_user_story_path(@story), class: "btn btn-primary" %>
+<%= link_to "Edit story", edit_user_story_path(@story.user, @story), class: "btn btn-primary" %>
 
-<%= link_to "Delete story", user_story_path(@story), method: :delete, class: "btn btn-danger" %>
+<%= link_to "Delete story", user_story_path(@story.user, @story), method: :delete, class: "btn btn-danger" %>
 
 <%= link_to "Back to Stories", user_stories_path, class: "btn btn-secondary" %>
