@@ -24,7 +24,7 @@ class StoriesController < ApplicationController
     @story.save
 
     respond_to do |format|
-      format.html { redirect_to user_story_path(id: @story.id), notice: "Story was successfully created." }
+      format.html { redirect_to user_stories_path, notice: "Story was successfully created." }
     end   
    end
 
