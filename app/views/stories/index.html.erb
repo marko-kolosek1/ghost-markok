@@ -14,8 +14,10 @@
 <% @stories.each do |s| %>
   <%= s.title %>
   <%= s.content %>
-  <%= link_to "Show", user_story_path(id: s.id), class: "btn btn-primary" %>
+  <%= link_to "Show", user_story_path(s.user, id: s), class: "btn btn-primary" %>
   <%= link_to "Back to User", user_path(id: s.user_id), class: "btn btn-secondary" %>
   <br>
   <br>
 <% end %>
+
+<%= paginate @stories %>
