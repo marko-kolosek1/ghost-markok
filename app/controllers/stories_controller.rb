@@ -4,9 +4,9 @@ class StoriesController < ApplicationController
   
   def index
     if current_user.role == "admin" || current_user.role == "editor"
-      @stories = Story.all.search(params[:search])
+      @stories = Story.all.search(params[:search]).page params[:page]
     elsif current_user.role == "author"
-      @stories = Story.author_stories(current_user).search(params[:search]) 
+      @stories = Story.author_stories(current_user).search(params[:search]).page params[:page]
     end
   end
 
@@ -24,7 +24,7 @@ class StoriesController < ApplicationController
     @story.save
 
     respond_to do |format|
-      format.html { redirect_to user_stories_path, notice: "Story was successfully destroyed." }
+      format.html { redirect_to user_stories_path, notice: "Story was successfully created." }
     end   
    end
 
@@ -32,7 +32,7 @@ class StoriesController < ApplicationController
     @story.update(story_params)
 
     respond_to do |format|
-      format.html { redirect_to user_stories_path, notice: "Story was successfully destroyed." }
+      format.html { redirect_to user_stories_path, notice: "Story was successfully updated." }
     end
   end
 
