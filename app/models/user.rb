@@ -42,7 +42,7 @@ class User < ApplicationRecord
   private
 
   def set_default_role
-    self.role = "author"
+    self.role = "author" if self.role.blank?
   end
 
   def initialize_default_name
