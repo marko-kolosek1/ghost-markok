@@ -8,5 +8,6 @@ FactoryBot.define do
     bio { "random bio"}
     slug { first_name + last_name.chr }
     avatar { nil }
+    invitation_accepted_at { nil }    
   end
 end
