@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2022_07_20_123309) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "api_keys", force: :cascade do |t|
     t.string "access_token"
     t.datetime "created_at", precision: 6, null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_123309) do
     t.string "title"
     t.text "content"
     t.datetime "last_edited"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_123309) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id", null: false
-    t.integer "story_id", null: false
+    t.bigint "tag_id", null: false
+    t.bigint "story_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_taggings_on_story_id"
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_123309) do
     t.datetime "invitation_accepted_at"
     t.integer "invitation_limit"
     t.string "invited_by_type"
-    t.integer "invited_by_id"
+    t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.datetime "last_seen_at"
     t.datetime "deleted_at"
